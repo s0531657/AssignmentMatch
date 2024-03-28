@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#f0f0f0',
     justifyContent: 'center',
     alignItems: 'center',
-    margin: '1%', // Adjust the margin to ensure spacing between cards
+    margin: '1%', // Adjust the margin to 
     borderRadius: 5,
   },
   cardPlaceholder: {
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
   backButton: {
     position: 'absolute',
     top: 20,
-    left: -190,
+    left: -150,
     padding: 10,
 },
 });

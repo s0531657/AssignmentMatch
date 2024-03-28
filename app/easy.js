@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, Pressable, Button, Alert, TouchableOpacity} from 'react-native';
 import Styles from '../styles/page-styles';
 import { Link } from 'expo-router';
+import { Vibration } from 'react-native';
+
 
 const generateInitialCards = () => {
   const content = ['A', 'B', 'C', 'D', 'E', 'F'];
@@ -42,21 +44,21 @@ const EasyGame = () => {
 
   const handlePress = (cardId) => {
     if (flippedCards.length >= 2 || !isPlaying) return;
-
+  
     const newFlippedCards = flippedCards.concat(cardId);
     setFlippedCards(newFlippedCards);
-
+  
     setCards((prevCards) =>
       prevCards.map((card) =>
         card.id === cardId ? { ...card, isFlipped: true } : card
       )
     );
-
+  
     if (newFlippedCards.length === 2) {
       const [firstCardId, secondCardId] = newFlippedCards;
       const firstCard = cards.find((card) => card.id === firstCardId);
       const secondCard = cards.find((card) => card.id === secondCardId);
-
+  
       if (firstCard.content === secondCard.content) {
         setScore((prevScore) => prevScore + 100);
         setCards((prevCards) =>
@@ -64,8 +66,11 @@ const EasyGame = () => {
             newFlippedCards.includes(card.id) ? { ...card, isMatched: true } : card
           )
         );
+      } else {
+        // Vibrate the device when the matching is wrong
+        Vibration.vibrate();
       }
-
+  
       setTimeout(() => {
         setCards((prevCards) =>
           prevCards.map((card) =>
