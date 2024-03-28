@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
   page: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#f0f0f0',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -33,27 +33,31 @@ const styles = StyleSheet.create({
     margin: 20,
   },
   card: {
-    width: '22%', // Adjust the width to fit 4 cards in a row
-    aspectRatio: 1, // Keep the aspect ratio 1:1 for square cards
+    width: '26%',
+    aspectRatio: 1,
     backgroundColor: '#f0f0f0',
     justifyContent: 'center',
     alignItems: 'center',
-    margin: '1%', // Adjust the margin to 
-    borderRadius: 5,
+    margin: '1%',
+    borderRadius: 10,
+    borderWidth: 2,
+    borderColor: '#ddd',
   },
   cardPlaceholder: {
     backgroundColor: 'transparent',
-  },
-  cardText: {
-    fontSize: 24,
+    borderColor: 'transparent',
+    elevation: 0,
+    shadowOpacity: 0,
   },
   score: {
     fontSize: 20,
     margin: 10,
+    color: '#007bff',
   },
   timer: {
     fontSize: 20,
     margin: 10,
+    color: '#007bff',
   },
   buttons: {
     flexDirection: 'row',
@@ -61,16 +65,18 @@ const styles = StyleSheet.create({
     width: '80%',
     marginTop: 20,
   },
+  backButton: {
+    padding: 10,
+    margin: -30,
+    backgroundColor: '#007bff',
+    borderRadius: 5,
+    left: -180,
+  },
   instructions: {
     fontSize: 20,
     marginBottom: 20,
+    color: '#333',
   },
-  backButton: {
-    position: 'absolute',
-    top: 20,
-    left: -150,
-    padding: 10,
-},
 });
 
 export default styles;

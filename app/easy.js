@@ -67,7 +67,7 @@ const EasyGame = () => {
           )
         );
       } else {
-        // Vibrate the device when the matching is wrong
+        
         Vibration.vibrate();
       }
   
