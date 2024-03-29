@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Pressable, Button, Alert, TouchableOpacity} from 'react-native';
+import { View, Text, Pressable, Button, Alert, TouchableOpacity, Vibration } from 'react-native';
 import Styles from '../styles/page-styles';
 import { Link } from 'expo-router';
-import { Vibration } from 'react-native';
 
+const cardColors = ['#FF5733', '#33FF57', '#3357FF', '#F333FF', '#33FFF3', '#F3FF33'];
 
 const generateInitialCards = () => {
-  const content = ['A', 'B', 'C', 'D', 'E', 'F'];
-  return content
-    .concat(content)
-    .map((c, index) => ({ id: index, content: c, isFlipped: false, isMatched: false }))
+  return cardColors
+    .flatMap((color, index) => [
+      { id: `card-${index * 2}`, color, isFlipped: false, isMatched: false },
+      { id: `card-${index * 2 + 1}`, color, isFlipped: false, isMatched: false },
+    ])
     .sort(() => Math.random() - 0.5);
 };
 
@@ -59,7 +60,7 @@ const EasyGame = () => {
       const firstCard = cards.find((card) => card.id === firstCardId);
       const secondCard = cards.find((card) => card.id === secondCardId);
   
-      if (firstCard.content === secondCard.content) {
+      if (firstCard.color === secondCard.color) {
         setScore((prevScore) => prevScore + 100);
         setCards((prevCards) =>
           prevCards.map((card) =>
@@ -67,7 +68,6 @@ const EasyGame = () => {
           )
         );
       } else {
-        
         Vibration.vibrate();
       }
   
@@ -108,26 +108,27 @@ const EasyGame = () => {
         </Link>
       </View>
       <Text style={Styles.instructions}>Click start game to play!</Text>
+      <View style={Styles.buttons}>
+        <Button title="Start Game" onPress={startGame} />
+        <Button title="Reset Game" onPress={resetGame} />
+      </View>
       <View style={Styles.grid}>
         {cards.map((card) =>
           card.isMatched ? (
             <View key={card.id} style={[Styles.card, Styles.cardPlaceholder]} />
           ) : (
             <Pressable key={card.id} onPress={() => handlePress(card.id)} style={Styles.card}>
-              <Text style={Styles.cardText}>{card.isFlipped ? card.content : '?'}</Text>
+              <View style={[Styles.card, card.isFlipped || card.isMatched ? { backgroundColor: card.color } : null]}>
+                <Text style={Styles.cardText}>{card.isFlipped ? '' : 'x '}</Text>
+              </View>
             </Pressable>
           )
         )}
       </View>
       <Text style={Styles.score}>Score: {score}</Text>
       <Text style={Styles.timer}>Time: {timer} seconds</Text>
-      <View style={Styles.buttons}>
-        <Button title="Start Game" onPress={startGame} />
-        <Button title="Reset Game" onPress={resetGame} />
-      </View>
     </View>
   );
-  
 };
 
 export default EasyGame;
