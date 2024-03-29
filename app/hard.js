@@ -3,7 +3,8 @@ import { View, Text, Pressable, Button, Alert, TouchableOpacity, Vibration, Dime
 import Styles from '../styles/page-styles';
 import { Link } from 'expo-router';
 
-const cardColors = ['#FF5733', '#33FF57', '#3357FF', '#F333FF', '#33FFF3', '#F3FF33'];
+
+const cardColors = ['#FF5733', '#33FF57', '#3357FF', '#F333FF', '#33FFF3', '#FFC300', '#581845', '#DAF7A6', '#C70039', '#900C3F'];
 
 const generateInitialCards = () => {
   return cardColors
@@ -14,7 +15,7 @@ const generateInitialCards = () => {
     .sort(() => Math.random() - 0.5);
 };
 
-const EasyGame = () => {
+const HardGame = () => {
   const [cards, setCards] = useState(generateInitialCards());
   const [score, setScore] = useState(0);
   const [flippedCards, setFlippedCards] = useState([]);
@@ -161,4 +162,4 @@ const EasyGame = () => {
   );
 };
 
-export default EasyGame;
+export default HardGame;

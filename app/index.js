@@ -15,12 +15,12 @@ export default function Page() {
             </Link>
             <Link style={Styles.button} href={{ pathname: "/medium" }} asChild>
               <Pressable style={Styles.button}>
-                <Text style={Styles.buttonText}>Medium 18 Cards</Text>
+                <Text style={Styles.buttonText}>Medium 16 Cards</Text>
               </Pressable>
             </Link>
             <Link style={Styles.button} href={{ pathname: "/hard" }} asChild>
               <Pressable style={Styles.button}>
-                <Text style={Styles.buttonText}>Hard 24 Cards</Text>
+                <Text style={Styles.buttonText}>Hard 20 Cards</Text>
               </Pressable>
             </Link>
         </View>
